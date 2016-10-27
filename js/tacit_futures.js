@@ -8,6 +8,7 @@ function setup_timeline() {
 
 	var timelineOpts = {
 		width		: "100%",
+		height		: "120px",
 		style		: "box",
 		axisOnTop	: true
 	};
