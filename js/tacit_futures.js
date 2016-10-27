@@ -46,13 +46,17 @@ function setup_map() {
 }
 
 function setup_player() {
-	 var geoJson = null;	// load our GeoJSON
-	 var playerOpts = {
-	 	playControl: true,
+	var playerOpts = {
+		playControl: true,
 	 	dateControl: true
-	 };
+	};
 
-	return new L.Playback(map, geoJson, onPlaybackTimeChanged, playerOpts);
+	//var g = {"type":"Feature","geometry":{"type":"MultiPoint","coordinates":[[34.533333,69.166667],[52.520007,13.404954]]},"properties":{"time":[1443326400000,1446004800000]}};
+	// gaaargh! hard-coded still chokes it! WTF?
+
+	// chokes! WHY?
+	// return new L.Playback(map, parseGeoJSON(), onPlaybackTimeChanged, playerOpts);
+	return new L.Playback(map, null, onPlaybackTimeChanged, playerOpts);
 }
 
 $(document).ready(function() {

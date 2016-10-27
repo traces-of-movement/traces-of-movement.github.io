@@ -51,19 +51,19 @@ function parseGeoJSON() {
 	}
 
 	*/
-
+	
 	return {
 		type : "Feature",
 		geometry : {
 			type : "MultiPoint",
 			coordinates : _.map(TFData.events, function(e) {
 				return [e.point.lat, e.point.lng];
-			}),
-			properties : {
-				time : _.map(_.pluck(TFData.events, "ts"), function(ts) {
-					return ts.valueOf();
-				})
-			}
+			})
+		},
+		properties : {
+			time : _.map(_.pluck(TFData.events, "ts"), function(ts) {
+				return ts.valueOf();
+			})
 		}
 	};
 }
