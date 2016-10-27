@@ -1,16 +1,13 @@
 function setup_timeline() {
-	var startTime	= new Date(2015,  9, 27);
-	var endTime		= new Date(2015, 10, 28);
-	var timelineWidth = '100%';
-
 	var timelineData = new vis.DataSet([{
-			start	: startTime,
-			end		: endTime
+			start	: TFData.origin.date,
+			end		: TFData.destination.date,
+			content : TFData.title
 		}
 	]);
 
 	var timelineOpts = {
-		width		: timelineWidth,
+		width		: "100%",
 		style		: "box",
 		axisOnTop	: true
 	};
@@ -22,16 +19,14 @@ function setup_timeline() {
 function setup_map() {
 	var map = new L.map('tf_map_holder');
 	var tileLayer = new L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://mapbox.com">Mapbox</a>',
 		maxZoom: 18,
 		id: 'mapbox.streets',
 		accessToken: 'pk.eyJ1Ijoiam9yZGFuYnMiLCJhIjoiY2l1c2RjcG85MDAyczJ0cGZhcjZtcWEybCJ9.rUN_nJR6NJMyBOmHwAGnOw'
 	}).addTo(map);	
 
-	var mapCenter = [34.533333, 69.166667]; // kabul
-	var mapZoom = 10;	// initial zoom
-
-	map.setView(mapCenter, mapZoom);
+	var mapZoom = 4;	// initial zoom
+	map.setView(pointToArray(getGeoMidwayPoint(TFData.origin, TFData.destination)), mapZoom);
 	return map;
 }
 
