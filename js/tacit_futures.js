@@ -5,6 +5,29 @@
 
 	var startTime = 0;	// sept 2015
 	var endTime = 0;	// nov 2015
+	var timelineLabel = "timeline label";	// not sure if we need this.
+	var timelineWidth = "100%";
+	var timelineHeight = "120px";
+
+	var timelineData = new vis.DataSet([
+		{
+			start : startTime,
+			end : endTime,
+			content : timelineLabel
+		}
+	]);
+
+	var timelineOpts = {
+		width : timelineWidth,
+		height : timelineHeight,
+		style : "box",
+		axisOnTop : true,
+		showCustomTime : true
+	};
+
+	var timeline = new vis.Timeline($('tf_timeline_holder'), timelineData, timelineOpts);
+
+	timeline.setCustomTime(startTime);
 
 	/*
 	 * init map
@@ -26,11 +49,11 @@
 
 	 var geoJson = null;	// load our GeoJSON
 	 var onPlaybackTimeChange = function(ms) {};
-	 var opts = {
+	 var playerOpts = {
 	 	playControl: true,
 	 	dateControl: true
 	 };
 
-	 var player = new L.Playback(map, geoJson, onPlaybackTimeChange, opts);
+	 var player = new L.Playback(map, geoJson, onPlaybackTimeChange, playerOpts);
 
 })(jQuery);
