@@ -1,19 +1,33 @@
+var map;
+var timeline;
+var player;
+
+function onPlaybackTimeChanged(ms) {
+	timeline.setCustomTime(new Date(ms));
+}
+
+function onCustomTimeChanged(data) {
+	
+}
+
 function setup_timeline() {
 	var timelineData = new vis.DataSet([{
-			start	: TFData.origin.date,
-			end		: TFData.destination.date,
-			content : TFData.title
+			start	: _.first(TFData.events).ts,
+			end		: _.last(TFData.events).ts,
+			content : TFData.title,
+			id: 1
 		}
 	]);
 
 	var timelineOpts = {
 		width		: "100%",
-		height		: "120px",
-		style		: "box",
-		axisOnTop	: true
+		height		: "120px"
 	};
 
-	var timeline = new vis.Timeline($('#tf_timeline_holder')[0], timelineData, timelineOpts);
+	var timeline = new vis.Timeline(document.getElementById("tf_timeline_holder"), timelineData, timelineOpts);
+	timeline.on('timechange', onCustomTimeChanged);
+	timeline.setCustomTime(_.first(TFData.events).ts.valueOf());
+
 	return timeline;
 }
 
@@ -27,28 +41,22 @@ function setup_map() {
 	}).addTo(map);	
 
 	var mapZoom = 4;	// initial zoom
-	map.setView(pointToArray(getGeoMidwayPoint(TFData.origin, TFData.destination)), mapZoom);
+	map.setView(pointToArray(getGeoMidwayPoint(_.first(TFData.events).point, _.last(TFData.events).point)), mapZoom);
 	return map;
 }
 
-function setup_player(map, timeline) {
+function setup_player() {
 	 var geoJson = null;	// load our GeoJSON
-	 var onPlaybackTimeChange = function(ms) {};
 	 var playerOpts = {
 	 	playControl: true,
 	 	dateControl: true
 	 };
 
-	 function onPlaybackTimeChange (ms) {
-		 timeline.setCustomTime(new Date(ms));
-	 };
-
-	 var player = new L.Playback(map, geoJson, onPlaybackTimeChange, playerOpts);
-	 return player;
+	return new L.Playback(map, geoJson, onPlaybackTimeChanged, playerOpts);
 }
 
 $(document).ready(function() {
-	var map = setup_map();
-	var timeline = setup_timeline();
-	var player = setup_player(map, timeline);
+	map = setup_map();
+	timeline = setup_timeline();
+	player = setup_player();
 });

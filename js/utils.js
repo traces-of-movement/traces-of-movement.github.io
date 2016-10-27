@@ -8,6 +8,10 @@ if (typeof(Number.prototype.toRad) === "undefined") {
   }
 }
 
+function formatDate(d) {
+	return moment(d, "YYYY-MM-DD");
+}
+
 function pointToArray(p) {
 	return [p.lat, p.lng];
 }
@@ -29,5 +33,37 @@ function getGeoMidwayPoint(a, b) {
 	return {
 		lat : c.latRad.toDegrees(),
 		lng : c.lngRad.toDegrees()
+	};
+}
+
+function parseGeoJSON() {
+	/*
+	
+	{
+	  "type": "Feature",
+	  "geometry": {
+	    "type": "MultiPoint",
+	    "coordinates": [array of [lng,lat] coordinates]
+	  },
+	  "properties": {
+	    "time": [array of UNIX timestamps]
+	  }
+	}
+
+	*/
+
+	return {
+		type : "Feature",
+		geometry : {
+			type : "MultiPoint",
+			coordinates : _.map(TFData.events, function(e) {
+				return [e.point.lat, e.point.lng];
+			}),
+			properties : {
+				time : _.map(_.pluck(TFData.events, "ts"), function(ts) {
+					return ts.valueOf();
+				})
+			}
+		}
 	};
 }
