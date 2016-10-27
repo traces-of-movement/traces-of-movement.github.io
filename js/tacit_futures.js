@@ -1,23 +1,18 @@
 function setup_timeline() {
-	var startTime	= new Date(2015, 9);	// sept 2015
-	var endTime		= new Date(2015, 11);	// nov 2015
-	var timelineLabel = "timeline label";	// not sure if we need this.
-	var timelineWidth = "100%";
-	var timelineHeight = "120px";
+	var startTime	= new Date(2015,  9, 27);
+	var endTime		= new Date(2015, 10, 28);
+	var timelineWidth = '100%';
 
-	var timelineData = new vis.DataSet([
-		{
+	var timelineData = new vis.DataSet([{
 			start	: startTime,
-			end		: endTime,
-			content	: timelineLabel
+			end		: endTime
 		}
 	]);
 
 	var timelineOpts = {
-		width : timelineWidth,
-		height : timelineHeight,
-		style : "box",
-		axisOnTop : true
+		width		: timelineWidth,
+		style		: "box",
+		axisOnTop	: true
 	};
 
 	var timeline = new vis.Timeline($('#tf_timeline_holder')[0], timelineData, timelineOpts);
@@ -33,19 +28,23 @@ function setup_map() {
 		accessToken: 'pk.eyJ1Ijoiam9yZGFuYnMiLCJhIjoiY2l1c2RjcG85MDAyczJ0cGZhcjZtcWEybCJ9.rUN_nJR6NJMyBOmHwAGnOw'
 	}).addTo(map);	
 
-	var mapCenter = [51.505, -0.09];	// lat-lng of map center, london
+	var mapCenter = [34.533333, 69.166667]; // kabul
 	var mapZoom = 10;	// initial zoom
 
 	map.setView(mapCenter, mapZoom);
 	return map;
 }
 
-function setup_player(map) {
+function setup_player(map, timeline) {
 	 var geoJson = null;	// load our GeoJSON
 	 var onPlaybackTimeChange = function(ms) {};
 	 var playerOpts = {
 	 	playControl: true,
 	 	dateControl: true
+	 };
+
+	 function onPlaybackTimeChange (ms) {
+		 timeline.setCustomTime(new Date(ms));
 	 };
 
 	 var player = new L.Playback(map, geoJson, onPlaybackTimeChange, playerOpts);
@@ -55,5 +54,5 @@ function setup_player(map) {
 $(document).ready(function() {
 	var map = setup_map();
 	var timeline = setup_timeline();
-	var player = setup_player(map);
+	var player = setup_player(map, timeline);
 });
