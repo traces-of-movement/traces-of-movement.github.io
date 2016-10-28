@@ -9,7 +9,7 @@ if (typeof(Number.prototype.toRad) === "undefined") {
 }
 
 function formatDate(d) {
-	return moment(d, "YYYY-MM-DD");
+	return moment(d, "YYYY-MM-DDTHH");
 }
 
 function pointToArray(p) {
@@ -47,7 +47,7 @@ function getEventFromTimestamp(ms) {
 		var oldDiff = Math.abs(nearestValue - ms);
 		var newDiff = Math.abs(ms - e.ts);
 		
-		if(newDiff < oldDiff) {
+		if(newDiff < oldDiff && e.ts < ms) {
 			match = i;
 			nearestValue = e.ts;
 		}

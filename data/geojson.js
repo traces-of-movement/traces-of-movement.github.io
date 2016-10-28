@@ -3,36 +3,24 @@ var TFData = {
 	events : [
 		{
 			point : {
-				lat : 34.533333,
-				lng : 69.166667
+				lat : 35.696111, // Tehran
+				lng : 51.423056
 			},
-			ts : formatDate("2015-9-27"),
-			label : "Hamid leaves Kabul, Iran.",
+			ts : formatDate("2015-9-26"),
+			label : "Hamad leaves Tehran, Iran for Bazargan, Iran.",
 			media : {
 				type : "photo",
 				url : "https://farm8.staticflickr.com/7121/7660894804_0370a64ceb_m_d.jpg"	// for example!
-			}
-		},
-		{
-			point : {
-				lat : 35.696111,
-				lng : 51.423056
-			},
-			ts : formatDate("2015-10-1"),
-			label : "Arrives in Tehran, Iran.",
-			media : {
-				type : "",
-				url : ""
 			},
 			callback : null
 		},
 		{
 			point : {
-				lat : 39.391389,
+				lat : 39.391389, // Bazargan
 				lng : 44.3875
 			},
-			ts : formatDate("2015-10-3"),
-			label : "Arrives in Bazargan, Iran.",
+			ts : formatDate("2015-9-27"),
+			label : "Crosses border to Gürbulak, Turkey",
 			media : {
 				type : "",
 				url : ""
@@ -41,11 +29,11 @@ var TFData = {
 		},
 		{
 			point : {
-				lat : 39.416417,
+				lat : 39.416417, // Gürbulak
 				lng : 44.352583
 			},
-			ts : formatDate("2015-10-5"),
-			label : "Arrives in Gürbulak, Turkey.",
+			ts : formatDate("2015-9-28"),
+			label : "Bus to Istanbul, Turkey",
 			media : {
 				type : "",
 				url : ""
@@ -54,11 +42,11 @@ var TFData = {
 		},
 		{
 			point : {
-				lat : 41.013611,
+				lat : 41.013611, // Istanbul
 				lng : 28.955000
 			},
-			ts : formatDate("2015-10-7"),
-			label : "Takes bus to Istanbul, Turkey.",
+			ts : formatDate("2015-9-29"),
+			label : "1 week stay in Istanbul, Turkey",
 			media : {
 				type : "",
 				url : ""
@@ -67,11 +55,24 @@ var TFData = {
 		},
 		{
 			point : {
-				lat : 40.155833,
+				lat : 41.013611, // Istanbul
+				lng : 28.955000
+			},
+			ts : formatDate("2015-10-5T00"),
+			label : "Van to Çanakkale, Turkey",
+			media : {
+				type : "",
+				url : ""
+			},
+			callback : null
+		},
+		{
+			point : {
+				lat : 40.155833, // Çanakkale
 				lng : 26.413611
 			},
-			ts : formatDate("2015-10-9"),
-			label : "Takes van to Çanakkale, Turkey.",
+			ts : formatDate("2015-10-5T12"),
+			label : "Smuggler boat to Lesbos, Greece",
 			media : {
 				type : "",
 				url : ""
@@ -80,11 +81,42 @@ var TFData = {
 		},
 		{
 			point : {
-				lat : 39.166667,
+				lat : 39.166667, // Lesbos
 				lng : 26.333333
 			},
-			ts : formatDate("2015-10-11"),
-			label : "Takes smuggler bus to Lesbos, Greece.",
+			ts : formatDate("2015-10-5T23"),
+			label : "2 nights in Lesbos, Greece",
+			media : {
+				type : "",
+				url : ""
+			},
+			callback : null
+		},
+		{
+			point : {
+				lat : 39.166667, // Lesbos
+				lng : 26.333333
+			},
+			ts : formatDate("2015-10-7T00"),
+			label : "Ferry boat to Athens, Greece",
+			media : {
+				type : "info",
+				info : [
+					{
+						text : "Cost: 35 Euro",
+						icon : "/img/euro.png"
+					}
+				]
+			},
+			callback : null
+		},
+		{
+			point : {
+				lat : 37.966667, // Athens
+				lng : 23.716667
+			},
+			ts : formatDate("2015-10-7T12"),
+			label : "Bus to Idomeni, Greece",
 			media : {
 				type : "info",
 				info : [
@@ -98,24 +130,24 @@ var TFData = {
 		},
 		{
 			point : {
-				lat : 37.966667,
-				lng : 23.716667
+				lat : 41.116667, // Indomeni
+				lng : 22.516667
 			},
-			ts : formatDate("2015-10-13"),
-			label : "Takes ferry boat to Athens, Greece.",
+			ts : formatDate("2015-10-7T23"),
+			label : "Two days in Indomeni, waiting for the Macedonian border to open",
 			media : {
 				type : "",
-				url : ""
+				info : ""
 			},
 			callback : null
 		},
 		{
 			point : {
-				lat : 41.116667,
+				lat : 41.116667, // Indomeni
 				lng : 22.516667
 			},
-			ts : formatDate("2015-10-15"),
-			label : "Takes bus to Idomeni, Greece.",
+			ts : formatDate("2015-10-9T00"),
+			label : "Crosses border to Macedonia.",
 			media : {
 				type : "info",
 				info : [
@@ -129,11 +161,11 @@ var TFData = {
 		},
 		{
 			point : {
-				lat : 42.000000, // GPS coordinates of Skopje, not necessarily where Hamid was
+				lat : 42.000000, // Skopje, not necessarily where Hamid was
 				lng : 21.433333
 			},
-			ts : formatDate("2015-10-17"),
-			label : "Arrives in Fyrom (Macedonia).",
+			ts : formatDate("2015-10-9T23"),
+			label : "Two days in Fyrom (Macedonia).",
 			media : {
 				type : "",
 				url : ""
@@ -142,11 +174,68 @@ var TFData = {
 		},
 		{
 			point : {
-				lat : 48.200000,
+				lat : 42.000000, // Skopje, not necessarily where Hamid was
+				lng : 21.433333
+			},
+			ts : formatDate("2015-10-11"),
+			label : "Train to Vienna",
+			media : {
+				type : "info",
+				info : [
+					{
+						text : "Cost: 25 euro",
+						icon : "/img/euro.png"
+					}
+				]
+			},
+			callback : null
+		},
+		{
+			point : {
+				lat : 48.200000, // Vienna
 				lng : 16.366667
 			},
+			ts : formatDate("2015-10-11T23"),
+			label : "3 days in Vienna, waiting for the border to open",
+			media : {
+				type : "",
+				url : ""
+			},
+			callback : null
+		},
+		{
+			point : {
+				lat : 48.200000, // Vienna
+				lng : 16.366667
+			},
+			ts : formatDate("2015-10-14T00"),
+			label : "Bus to German border",
+			media : {
+				type : "",
+				url : ""
+			},
+			callback : null
+		},
+		{
+			point : {
+				lat : 47.811195, // German/Austria Border
+				lng : 12.900000
+			},
+			ts : formatDate("2015-10-14T23"),
+			label : "4 days spent in a refugee reception centre",
+			media : {
+				type : "",
+				url : ""
+			},
+			callback : null
+		},
+		{
+			point : {
+				lat : 47.811195, // German/Austria Border
+				lng : 12.900000
+			},
 			ts : formatDate("2015-10-19"),
-			label : "Arrives in Vienna, Austria.",
+			label : "Second refugee reception centre in a sport hall",
 			media : {
 				type : "",
 				url : ""
@@ -157,11 +246,11 @@ var TFData = {
 		// Crossing by train through Serbia, Hungary, into Austria (SEE ATTACHED MAP. Hamed follows a similar route, except he starts from Afghanistan), to german border
 		{
 			point : {
-				lat : 48.133333,
-				lng : 11.566667
+				lat : 47.811195, // German/Austria Border
+				lng : 12.900000
 			},
-			ts : formatDate("2015-10-21"),
-			label : "Arrives in Munich, Germany.",
+			ts : formatDate("2015-10-19"),
+			label : "Bus to Munich, Germany",
 			media : {
 				type : "",
 				url : ""
@@ -170,11 +259,42 @@ var TFData = {
 		},
 		{
 			point : {
-				lat : 52.516667,
+				lat : 48.133333, // Munich
+				lng : 11.566667
+			},
+			ts : formatDate("2015-10-19T23"),
+			label : "6 days in Munich in a refugee centre",
+			media : {
+				type : "",
+				url : ""
+			},
+			callback : null
+		},
+		{
+			point : {
+				lat : 48.133333, // Munich
+				lng : 11.566667
+			},
+			ts : formatDate("2015-10-27T22"),
+			label : "Train to Berlin",
+			media : {
+				type : "info",
+				info : [
+					{
+						text : "Cost: 162 euro",
+						icon : "/img/euro.png"
+					}
+				]
+			},
+			callback : null
+		},
+{
+			point : {
+				lat : 52.516667, // Berlin
 				lng : 13.383333
 			},
-			ts : formatDate("2015-10-28"),
-			label : "Arrives in Berlin, Germany.",
+			ts : formatDate("2015-10-28T23"),
+			label : "Taxi to a refugee camp at Wichertstraße strasse, Berlin",
 			media : {
 				type : "",
 				url : ""

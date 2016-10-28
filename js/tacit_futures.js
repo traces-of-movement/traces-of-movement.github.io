@@ -20,7 +20,7 @@ function onCustomTimeChange(properties) {
 }
 
 $(function() {
-    var tickLen = 3;    // 3 hours?
+    var tickLen = 1;     // hours
 	var playSpeed = 1.0; // ticks per second
     var mapZoom = 4;
 
