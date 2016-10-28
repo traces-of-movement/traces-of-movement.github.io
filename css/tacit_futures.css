@@ -1,0 +1,49 @@
+body {
+	font-family: arial;
+}
+
+#tf_map_holder {
+	position : absolute;
+	top: 0;
+	left : 0;
+	right : 0;
+	bottom : 120px;
+}
+
+#tf_timeline_holder {
+	position : absolute;
+	bottom : 0;
+	left : 0;
+	right : 0;
+	height : 120px;
+}
+
+div.tf_tracker_marker {
+	min-width: 30px;
+	min-height: 30px;
+}
+
+div.tf_tracker_content {
+	max-width: 240px;
+	min-width: 240px;
+	position: absolute;
+	background-color: #ffffff;
+}
+
+.tf_embed, .tf_embed:first-child{
+	display: block;
+	width: inherit;
+}
+
+.tf_embed ul {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+img.tf_icon {
+	width:25px;
+	height:25px;
+}
+
+
