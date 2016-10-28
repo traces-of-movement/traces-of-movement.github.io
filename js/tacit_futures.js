@@ -20,7 +20,7 @@ function onCustomTimeChange(properties) {
 }
 
 $(function() {
-    var tickLen = 3;    // 3 hours?
+    var tickLen = 1;     // hours
 	var playSpeed = 1.0; // ticks per second
     var mapZoom = 4;
 
@@ -55,6 +55,7 @@ $(function() {
 
     map.setView(pointToArray(getGeoMidwayPoint(_.first(TFData.events).point, _.last(TFData.events).point)), mapZoom);
     map.addLayer(basemapLayer);
+    
     map.touchZoom.disable();
     map.doubleClickZoom.disable();
     map.scrollWheelZoom.disable();
