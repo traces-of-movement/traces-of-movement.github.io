@@ -7,7 +7,11 @@ var TFData = {
 				lng : 69.166667
 			},
 			ts : formatDate("2015-9-27"),
-			label : "Hamid leaves Kabul, Iran."
+			label : "Hamid leaves Kabul, Iran.",
+			media : {
+				type : "photo",
+				url : "https://farm8.staticflickr.com/7121/7660894804_0370a64ceb_m_d.jpg"	// for example!
+			}
 		},
 		{
 			point : {
@@ -82,8 +86,13 @@ var TFData = {
 			ts : formatDate("2015-10-11"),
 			label : "Takes smuggler bus to Lesbos, Greece.",
 			media : {
-				type : "",
-				url : ""
+				type : "info",
+				info : [
+					{
+						text : "Cost: 25 Euro",
+						icon : "/img/euro.png"
+					}
+				]
 			},
 			callback : null
 		},
@@ -106,10 +115,15 @@ var TFData = {
 				lng : 22.516667
 			},
 			ts : formatDate("2015-10-15"),
-			label : "Takes €25 bus to Idomeni, Greece.",
+			label : "Takes bus to Idomeni, Greece.",
 			media : {
-				type : "",
-				url : ""
+				type : "info",
+				info : [
+					{
+						text : "Cost: 25 euro",
+						icon : "/img/euro.png"
+					}
+				]
 			},
 			callback : null
 		},
