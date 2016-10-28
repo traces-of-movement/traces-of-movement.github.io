@@ -57,7 +57,7 @@ function parseGeoJSON() {
 		geometry : {
 			type : "MultiPoint",
 			coordinates : _.map(TFData.events, function(e) {
-				return [e.point.lat, e.point.lng];
+				return [e.point.lng, e.point.lat];	// ha ha, GeoJSON does lng first for some reason.
 			})
 		},
 		properties : {
