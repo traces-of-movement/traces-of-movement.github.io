@@ -11,21 +11,12 @@ function onPlaybackTimeChange(ms) {
 	}
 
     timeline.setCustomTime(new Date(ms));
-
-    console.info("ON PLAYBACK TIME CHANGE");
-	console.info(arguments);
-	console.info(this);
 };
 
 function onCustomTimeChange(properties) {
     if (!playback.isPlaying()) {
         playback.setCursor(properties.time.getTime());
     }   
-}
-
-function onMarkerClicked(evt) {
-	console.info(this);
-	console.info(evt);
 }
 
 $(function() {
@@ -75,8 +66,7 @@ $(function() {
         	return {
         		icon : L.divIcon(TFIcons.tracker)
         	}
-		},
-		clickCallback : onMarkerClicked
+		}
     };
         
     playback = new L.Playback(map, parseGeoJSON(), onPlaybackTimeChange, playbackOptions);    
