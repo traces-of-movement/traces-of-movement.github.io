@@ -46,17 +46,46 @@ function setup_map() {
 }
 
 function setup_player() {
+	// 3 hours?
+	var h = 3;
+
 	var playerOpts = {
+		tickLen : h * 60 * 60 * 1000,
 		playControl: true,
-	 	dateControl: true
+	 	dateControl: true,
+	 	popups : true,
+
+	 	// layer and marker options
+        layer : {
+            pointToLayer : function(featureData, latlng) {
+                var result = {};
+                
+                if (featureData && featureData.properties && featureData.properties.path_options) {
+                    result = featureData.properties.path_options;
+                }
+                
+                if (!result.radius){
+                    result.radius = 5;
+                }
+                
+                return new L.CircleMarker(latlng, result);
+            }
+        },
+        
+        marker: { 
+            getPopup: function(featureData) {
+                var result = '';
+                
+                if (featureData && featureData.properties && featureData.properties.title) {
+                    result = featureData.properties.title;
+                }
+                
+                return result;
+            }
+        }
 	};
 
-	//var g = {"type":"Feature","geometry":{"type":"MultiPoint","coordinates":[[34.533333,69.166667],[52.520007,13.404954]]},"properties":{"time":[1443326400000,1446004800000]}};
-	// gaaargh! hard-coded still chokes it! WTF?
-
-	// chokes! WHY?
-	// return new L.Playback(map, parseGeoJSON(), onPlaybackTimeChanged, playerOpts);
-	return new L.Playback(map, null, onPlaybackTimeChanged, playerOpts);
+	return new L.Playback(map, parseGeoJSON(), onPlaybackTimeChanged, playerOpts);
 }
 
 $(document).ready(function() {
