@@ -2,6 +2,20 @@ var map;
 var timeline;
 var player;
 
+var TFIcons = {
+	origin : {
+		iconUrl : "/img/test_icon.png"
+	},
+	destination : {
+		iconUrl : "/img/test_icon.png"
+	},
+	tracker : {
+		className : "tf_tracker_marker",
+		iconSize : [25, 25],
+		iconUrl : "/img/test_icon.png"	
+	}
+};
+
 function onPlaybackTimeChange(ms) {
     timeline.setCustomTime(new Date(ms));
 };
@@ -10,6 +24,11 @@ function onCustomTimeChange(properties) {
     if (!playback.isPlaying()) {
         playback.setCursor(properties.time.getTime());
     }        
+}
+
+function onMarkerClicked() {
+	console.info(this);
+	console.info(arguments);
 }
 
 $(function() {
@@ -52,35 +71,11 @@ $(function() {
         dateControl: true,
         tracksLayer : false,
         popups : true,
-        
-        // layer and marker options
-        layer : {
-            pointToLayer : function(featureData, latlng) {
-                var result = {};
-                
-                if (featureData && featureData.properties && featureData.properties.path_options) {
-                    result = featureData.properties.path_options;
-                }
-                
-                if (!result.radius){
-                    result.radius = 5;
-                }
-                
-                return new L.CircleMarker(latlng, result);
-            }
-        },
-        
-        marker: { 
-            getPopup: function(featureData) {
-                var result = '';
-                
-                if (featureData && featureData.properties && featureData.properties.title) {
-                    result = featureData.properties.title;
-                }
-                
-                return result;
-            }
-        }
+        marker : function() {
+        	return {
+        		icon : L.icon(TFIcons.tracker)
+        	}
+		}
     };
         
     playback = new L.Playback(map, parseGeoJSON(), onPlaybackTimeChange, playbackOptions);    
