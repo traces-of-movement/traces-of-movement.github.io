@@ -2,60 +2,58 @@ var map;
 var timeline;
 var player;
 
-function onPlaybackTimeChanged(ms) {
-	timeline.setCustomTime(new Date(ms));
+function onPlaybackTimeChange(ms) {
+    timeline.setCustomTime(new Date(ms));
+};
+
+function onCustomTimeChange(properties) {
+    if (!playback.isPlaying()) {
+        playback.setCursor(properties.time.getTime());
+    }        
 }
 
-function onCustomTimeChanged(data) {
-	
-}
+$(function() {
+    var tickLen = 3;    // 3 hours?
+    var mapZoom = 4;
 
-function setup_timeline() {
-	var timelineData = new vis.DataSet([{
-			start	: _.first(TFData.events).ts,
-			end		: _.last(TFData.events).ts,
-			content : TFData.title,
-			id: 1
-		}
-	]);
+    var timelineData = new vis.DataSet([{
+        start: _.first(TFData.events).ts,
+        end: _.last(TFData.events).ts,
+        content: TFData.title 
+    }]);
 
-	var timelineOpts = {
-		width		: "100%",
-		height		: "120px"
-	};
+    var timelineOptions = {
+      "width":  "100%",
+      "height": "120px",
+      "style": "box",
+      "axisOnTop": true,
+      "showCustomTime":true
+    };
+    
+    timeline = new vis.Timeline(document.getElementById('tf_timeline_holder'), timelineData, timelineOptions);        
+    timeline.setCustomTime(_.first(TFData.events).ts);
 
-	var timeline = new vis.Timeline(document.getElementById("tf_timeline_holder"), timelineData, timelineOpts);
-	timeline.on('timechange', onCustomTimeChanged);
-	timeline.setCustomTime(_.first(TFData.events).ts.valueOf());
+    // Setup leaflet map
+    map = new L.Map('tf_map_holder');
 
-	return timeline;
-}
+    var basemapLayer = new L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://mapbox.com">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1Ijoiam9yZGFuYnMiLCJhIjoiY2l1c2RjcG85MDAyczJ0cGZhcjZtcWEybCJ9.rUN_nJR6NJMyBOmHwAGnOw'
+    });
 
-function setup_map() {
-	var map = new L.map('tf_map_holder');
-	var tileLayer = new L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-		attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://mapbox.com">Mapbox</a>',
-		maxZoom: 18,
-		id: 'mapbox.streets',
-		accessToken: 'pk.eyJ1Ijoiam9yZGFuYnMiLCJhIjoiY2l1c2RjcG85MDAyczJ0cGZhcjZtcWEybCJ9.rUN_nJR6NJMyBOmHwAGnOw'
-	}).addTo(map);	
+    map.setView(pointToArray(getGeoMidwayPoint(_.first(TFData.events).point, _.last(TFData.events).point)), mapZoom);
+    map.addLayer(basemapLayer);
 
-	var mapZoom = 4;	// initial zoom
-	map.setView(pointToArray(getGeoMidwayPoint(_.first(TFData.events).point, _.last(TFData.events).point)), mapZoom);
-	return map;
-}
-
-function setup_player() {
-	// 3 hours?
-	var h = 3;
-
-	var playerOpts = {
-		tickLen : h * 60 * 60 * 1000,
-		playControl: true,
-	 	dateControl: true,
-	 	popups : true,
-
-	 	// layer and marker options
+    var playbackOptions = {
+        tickLen : tickLen * (60 * 60 * 1000),
+        playControl: true,
+        dateControl: true,
+        tracksLayer : false,
+        popups : true,
+        
+        // layer and marker options
         layer : {
             pointToLayer : function(featureData, latlng) {
                 var result = {};
@@ -83,13 +81,8 @@ function setup_player() {
                 return result;
             }
         }
-	};
-
-	return new L.Playback(map, parseGeoJSON(), onPlaybackTimeChanged, playerOpts);
-}
-
-$(document).ready(function() {
-	map = setup_map();
-	timeline = setup_timeline();
-	player = setup_player();
+    };
+        
+    playback = new L.Playback(map, parseGeoJSON(), onPlaybackTimeChange, playbackOptions);    
+    timeline.on('timechange', onCustomTimeChange);    
 });
