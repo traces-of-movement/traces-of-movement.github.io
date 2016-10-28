@@ -17,3 +17,9 @@ body {
 	right : 0;
 	height : 120px;
 }
+
+div.tf_tracker_marker {
+	min-width: 30px;
+	min-height: 30px;
+	background-color: #ffffff;
+}

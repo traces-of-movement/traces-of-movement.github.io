@@ -36,6 +36,26 @@ function getGeoMidwayPoint(a, b) {
 	};
 }
 
+function getEventFromTimestamp(ms) {
+	// finds the event from timestamp.
+	// needs a bit of love!
+	
+	var match = -1;
+	var nearestValue = 0;
+
+	_.each(TFData.events, function(e, i) {
+		var oldDiff = Math.abs(nearestValue - ms);
+		var newDiff = Math.abs(ms - e.ts);
+		
+		if(newDiff < oldDiff) {
+			match = i;
+			nearestValue = e.ts;
+		}
+	});
+
+	return match >= 0 ? TFData.events[match] : null;
+}
+
 function parseGeoJSON() {
 	/*
 	

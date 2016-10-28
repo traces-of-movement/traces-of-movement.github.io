@@ -2,58 +2,41 @@ var map;
 var timeline;
 var player;
 
-var TFIcons = {
-	origin : {
-		iconUrl : "/img/test_icon.png"
-	},
-	destination : {
-		iconUrl : "/img/test_icon.png"
-	},
-	tracker : {
-		className : "tf_tracker_marker",
-		iconSize : [25, 25],
-		iconUrl : "/img/test_icon.png"	
-	}
-};
-
 function onPlaybackTimeChange(ms) {
+	var evt = getEventFromTimestamp(ms);
+	
+	if(evt) {
+		var panel = new TFTemplate(evt);
+		$("div.tf_tracker_marker").html(panel.render());
+	}
+
     timeline.setCustomTime(new Date(ms));
+
+    console.info("ON PLAYBACK TIME CHANGE");
+	console.info(arguments);
+	console.info(this);
 };
 
 function onCustomTimeChange(properties) {
     if (!playback.isPlaying()) {
         playback.setCursor(properties.time.getTime());
-    }        
+    }   
 }
 
-function onMarkerClicked() {
+function onMarkerClicked(evt) {
 	console.info(this);
-	console.info(arguments);
+	console.info(evt);
 }
 
 $(function() {
     var tickLen = 3;    // 3 hours?
     var mapZoom = 4;
 
-    /*
     var timelineData = new vis.DataSet([{
         start: _.first(TFData.events).ts,
         end: _.last(TFData.events).ts,
         content: TFData.title 
     }]);
-    */
-
-    var timelineData = new vis.DataSet(_.map(_.first(TFData.events, TFData.events.length -1), function(e, i) {
-    	var next_e = TFData.events[i + 1];
-    	return {
-    		start : e.ts,
-    		end : next_e.ts,
-    		content : e.title
-    	}
-    }));
-
-    console.info(timelineData);
-
 
 	var timelineOptions = {
       "width":  "100%",
@@ -85,29 +68,15 @@ $(function() {
     var playbackOptions = {
         tickLen : tickLen * (60 * 60 * 1000),
         playControl: true,
-        dateControl: true,
+        dateControl: false,
         tracksLayer : false,
         popups : true,
-        layer : {
-            pointToLayer : function(featureData, latlng) {
-                var result = {};
-                
-                if (featureData && featureData.properties && featureData.properties.path_options) {
-                    result = featureData.properties.path_options;
-                }
-                
-                if (!result.radius){
-                    result.radius = 5;
-                }
-                
-                return new L.marker(latlng, result)
-            }
-        },
         marker : function() {
         	return {
-        		icon : L.icon(TFIcons.tracker)
+        		icon : L.divIcon(TFIcons.tracker)
         	}
-		}
+		},
+		clickCallback : onMarkerClicked
     };
         
     playback = new L.Playback(map, parseGeoJSON(), onPlaybackTimeChange, playbackOptions);    
