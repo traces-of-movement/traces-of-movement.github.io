@@ -35,13 +35,27 @@ $(function() {
     var tickLen = 3;    // 3 hours?
     var mapZoom = 4;
 
+    /*
     var timelineData = new vis.DataSet([{
         start: _.first(TFData.events).ts,
         end: _.last(TFData.events).ts,
         content: TFData.title 
     }]);
+    */
 
-    var timelineOptions = {
+    var timelineData = new vis.DataSet(_.map(_.first(TFData.events, TFData.events.length -1), function(e, i) {
+    	var next_e = TFData.events[i + 1];
+    	return {
+    		start : e.ts,
+    		end : next_e.ts,
+    		content : e.title
+    	}
+    }));
+
+    console.info(timelineData);
+
+
+	var timelineOptions = {
       "width":  "100%",
       "height": "120px",
       "style": "box",
@@ -74,6 +88,21 @@ $(function() {
         dateControl: true,
         tracksLayer : false,
         popups : true,
+        layer : {
+            pointToLayer : function(featureData, latlng) {
+                var result = {};
+                
+                if (featureData && featureData.properties && featureData.properties.path_options) {
+                    result = featureData.properties.path_options;
+                }
+                
+                if (!result.radius){
+                    result.radius = 5;
+                }
+                
+                return new L.marker(latlng, result)
+            }
+        },
         marker : function() {
         	return {
         		icon : L.icon(TFIcons.tracker)
