@@ -46,6 +46,9 @@ $(function() {
     map.setView(pointToArray(getGeoMidwayPoint(_.first(TFData.events).point, _.last(TFData.events).point)), mapZoom);
     map.addLayer(basemapLayer);
 
+	var polyline = L.polyline(_.pluck(TFData.events, 'point'), {color: 'blue'});
+	polyline.addTo(map);
+
     var playbackOptions = {
         tickLen : tickLen * (60 * 60 * 1000),
         playControl: true,
