@@ -21,6 +21,7 @@ function onCustomTimeChange(properties) {
 
 $(function() {
     var tickLen = 3;    // 3 hours?
+	var playSpeed = 1.0; // ticks per second
     var mapZoom = 4;
 
     var timelineData = new vis.DataSet([{
@@ -58,6 +59,8 @@ $(function() {
 
     var playbackOptions = {
         tickLen : tickLen * (60 * 60 * 1000),
+		speed : playSpeed * 60.0 * 1000.0,
+		maxInterpolationTime : 100 * 24 * 60 * 60 * 1000.0,
         playControl: true,
         dateControl: false,
         tracksLayer : false,

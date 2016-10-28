@@ -613,7 +613,7 @@ L.Playback.PlayControl = L.Control.extend({
 
         var self = this;
         var playback = this.playback;
-        playback.setSpeed(100);
+        //playback.setSpeed(100);
 
         var playControl = L.DomUtil.create('div', 'playControl', this._container);
 
