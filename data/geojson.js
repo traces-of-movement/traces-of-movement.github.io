@@ -14,7 +14,7 @@ var TFData = {
 				lat : 35.696111,
 				lng : 51.423056
 			},
-			ts : formatDate("2015-10-28"),
+			ts : formatDate("2015-10-1"),
 			label : "Arrives in Tehran, Iran.",
 			media : {
 				type : "",
@@ -27,7 +27,7 @@ var TFData = {
 				lat : 39.391389,
 				lng : 44.3875
 			},
-			ts : formatDate("2015-10-28"),
+			ts : formatDate("2015-10-3"),
 			label : "Arrives in Bazargan, Iran.",
 			media : {
 				type : "",
@@ -40,7 +40,7 @@ var TFData = {
 				lat : 39.416417,
 				lng : 44.352583
 			},
-			ts : formatDate("2015-10-28"),
+			ts : formatDate("2015-10-5"),
 			label : "Arrives in Gürbulak, Turkey.",
 			media : {
 				type : "",
@@ -53,7 +53,7 @@ var TFData = {
 				lat : 41.013611,
 				lng : 28.955000
 			},
-			ts : formatDate("2015-10-28"),
+			ts : formatDate("2015-10-7"),
 			label : "Takes bus to Istanbul, Turkey.",
 			media : {
 				type : "",
@@ -66,7 +66,7 @@ var TFData = {
 				lat : 40.155833,
 				lng : 26.413611
 			},
-			ts : formatDate("2015-10-28"),
+			ts : formatDate("2015-10-9"),
 			label : "Takes van to Çanakkale, Turkey.",
 			media : {
 				type : "",
@@ -79,7 +79,7 @@ var TFData = {
 				lat : 39.166667,
 				lng : 26.333333
 			},
-			ts : formatDate("2015-10-28"),
+			ts : formatDate("2015-10-11"),
 			label : "Takes smuggler bus to Lesbos, Greece.",
 			media : {
 				type : "",
@@ -92,7 +92,7 @@ var TFData = {
 				lat : 37.966667,
 				lng : 23.716667
 			},
-			ts : formatDate("2015-10-28"),
+			ts : formatDate("2015-10-13"),
 			label : "Takes ferry boat to Athens, Greece.",
 			media : {
 				type : "",
@@ -105,7 +105,7 @@ var TFData = {
 				lat : 41.116667,
 				lng : 22.516667
 			},
-			ts : formatDate("2015-10-28"),
+			ts : formatDate("2015-10-15"),
 			label : "Takes €25 bus to Idomeni, Greece.",
 			media : {
 				type : "",
@@ -118,7 +118,7 @@ var TFData = {
 				lat : 42.000000, // GPS coordinates of Skopje, not necessarily where Hamid was
 				lng : 21.433333
 			},
-			ts : formatDate("2015-10-28"),
+			ts : formatDate("2015-10-17"),
 			label : "Arrives in Fyrom (Macedonia).",
 			media : {
 				type : "",
@@ -131,7 +131,7 @@ var TFData = {
 				lat : 48.200000,
 				lng : 16.366667
 			},
-			ts : formatDate("2015-10-28"),
+			ts : formatDate("2015-10-19"),
 			label : "Arrives in Vienna, Austria.",
 			media : {
 				type : "",
@@ -146,7 +146,7 @@ var TFData = {
 				lat : 48.133333,
 				lng : 11.566667
 			},
-			ts : formatDate("2015-10-28"),
+			ts : formatDate("2015-10-21"),
 			label : "Arrives in Munich, Germany.",
 			media : {
 				type : "",
