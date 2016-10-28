@@ -55,6 +55,7 @@ $(function() {
 
     map.setView(pointToArray(getGeoMidwayPoint(_.first(TFData.events).point, _.last(TFData.events).point)), mapZoom);
     map.addLayer(basemapLayer);
+    
     map.touchZoom.disable();
     map.doubleClickZoom.disable();
     map.scrollWheelZoom.disable();
