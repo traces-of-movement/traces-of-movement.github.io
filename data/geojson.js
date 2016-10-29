@@ -10,7 +10,7 @@ var TFData = {
 			label : "Hamad leaves Tehran, Iran for Bazargan, Iran.",
 			media : {
 				type : "photo",
-				url : "https://farm8.staticflickr.com/7121/7660894804_0370a64ceb_m_d.jpg"	// for example!
+				url : "/img/hamed.png"	// for example!
 			},
 			callback : null
 		},
@@ -22,8 +22,8 @@ var TFData = {
 			ts : formatDate("2015-9-27"),
 			label : "Crosses border to Gürbulak, Turkey",
 			media : {
-				type : "",
-				url : ""
+				type : "photo",
+				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/IMG_withtext_072606.jpg"
 			},
 			callback : null
 		},
@@ -35,8 +35,8 @@ var TFData = {
 			ts : formatDate("2015-9-28"),
 			label : "Bus to Istanbul, Turkey",
 			media : {
-				type : "",
-				url : ""
+				type : "photo",
+				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/image85.jpg"
 			},
 			callback : null
 		},
@@ -48,8 +48,8 @@ var TFData = {
 			ts : formatDate("2015-9-29"),
 			label : "1 week stay in Istanbul, Turkey",
 			media : {
-				type : "",
-				url : ""
+				type : "photo",
+				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/IMG_withtext_100154.jpg"
 			},
 			callback : null
 		},
@@ -61,8 +61,8 @@ var TFData = {
 			ts : formatDate("2015-10-5T00"),
 			label : "Van to Çanakkale, Turkey",
 			media : {
-				type : "",
-				url : ""
+				type : "photo",
+				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/IMG_withtext_104103.jpg"
 			},
 			callback : null
 		},
@@ -74,11 +74,21 @@ var TFData = {
 			ts : formatDate("2015-10-5T12"),
 			label : "Smuggler boat to Lesbos, Greece",
 			media : {
-				type : "",
-				url : ""
+				type : "video",
+				url : "https://www.youtube.com/embed/_26a7VdkpTU?t=20s"
 			},
-			callback : null
+			callback : function() {
+				// 60 seconds of video
+				playback.stop();
+								
+				window.setTimeout(function() {
+					playback.start();
+				}, (60 * 1000));
+
+			}
 		},
+		// also http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/IMG_20151015_162030.jpg
+		// and http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/IMG_20151015_161729.jpg
 		{
 			point : {
 				lat : 39.166667, // Lesbos
@@ -87,8 +97,8 @@ var TFData = {
 			ts : formatDate("2015-10-5T23"),
 			label : "2 nights in Lesbos, Greece",
 			media : {
-				type : "",
-				url : ""
+				type : "photo",
+				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/IMG_20151017_220425.jpg"
 			},
 			callback : null
 		},
@@ -128,6 +138,7 @@ var TFData = {
 			},
 			callback : null
 		},
+		// also http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/image11.jpg
 		{
 			point : {
 				lat : 41.116667, // Indomeni
@@ -136,8 +147,15 @@ var TFData = {
 			ts : formatDate("2015-10-7T23"),
 			label : "Two days in Indomeni, waiting for the Macedonian border to open",
 			media : {
-				type : "",
-				info : ""
+				type : "info",
+				info : [
+					{
+						text : "Hamed took the \"Mediterranean Route\" out of Afghanistan. He was 1 out of <b>213635</b> refugees along that route in 2015 alone."
+					},
+					{
+						text : "There were <b>267485</b> refugees leaving Afghanistan that year. The Mediterranean Route is the most used."
+					}
+				]
 			},
 			callback : null
 		},
@@ -198,8 +216,8 @@ var TFData = {
 			ts : formatDate("2015-10-11T23"),
 			label : "3 days in Vienna, waiting for the border to open",
 			media : {
-				type : "",
-				url : ""
+				type : "photo",
+				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/image54.jpg"
 			},
 			callback : null
 		},
@@ -224,8 +242,8 @@ var TFData = {
 			ts : formatDate("2015-10-14T23"),
 			label : "4 days spent in a refugee reception centre",
 			media : {
-				type : "",
-				url : ""
+				type : "photo",
+				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/20160106_115752.jpg"
 			},
 			callback : null
 		},
@@ -265,8 +283,8 @@ var TFData = {
 			ts : formatDate("2015-10-19T23"),
 			label : "6 days in Munich in a refugee centre",
 			media : {
-				type : "",
-				url : ""
+				type : "photo",
+				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/FB_IMG_1474297660161_withtext.jpg"
 			},
 			callback : null
 		},
@@ -288,7 +306,7 @@ var TFData = {
 			},
 			callback : null
 		},
-{
+		{
 			point : {
 				lat : 52.516667, // Berlin
 				lng : 13.383333
@@ -296,8 +314,8 @@ var TFData = {
 			ts : formatDate("2015-10-28T23"),
 			label : "Taxi to a refugee camp at Wichertstraße strasse, Berlin",
 			media : {
-				type : "",
-				url : ""
+				type : "photo",
+				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/FB_IMG_1474297660161_withtext.jpg"
 			},
 			callback : null
 		}
