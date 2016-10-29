@@ -1,13 +1,20 @@
 var map;
 var timeline;
-var player;
+var playback;
+var currentEvent;
 
 function onPlaybackTimeChange(ms) {
 	var evt = getEventFromTimestamp(ms);
 	
-	if(evt) {
+	if(evt && evt != currentEvent) {
+        currentEvent = evt;
+
 		var panel = new TFTemplate(evt);
 		$("div.tf_tracker_marker").html(panel.render());
+
+        if(evt.callback) {
+            (evt.callback)();
+        }
 	}
 
     timeline.setCustomTime(new Date(ms));

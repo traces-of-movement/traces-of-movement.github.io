@@ -30,6 +30,13 @@ var TFTemplate = Backbone.Model.extend({
 
 					break;
 				case "video":
+					embed.push($(document.createElement('iframe')).attr({
+						width : 560,
+						height : 315,
+						src : this.get('media').url,
+						frameborder : 0
+					}));
+
 					break;
 				case "statistic":
 					break;
@@ -50,7 +57,6 @@ var TFTemplate = Backbone.Model.extend({
 						$(this).append(li);
 					}, info);
 
-					console.info($(info));
 					embed.push(info);
 					break;
 				case "text":
