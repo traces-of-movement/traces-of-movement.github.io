@@ -87,8 +87,6 @@ var TFData = {
 
 			}
 		},
-		// also http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/IMG_20151015_162030.jpg
-		// and http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/IMG_20151015_161729.jpg
 		{
 			point : {
 				lat : 39.166667, // Lesbos
@@ -98,7 +96,7 @@ var TFData = {
 			label : "2 nights in Lesbos, Greece",
 			media : {
 				type : "photo",
-				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/IMG_20151017_220425.jpg"
+				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/IMG_withtext_161605.jpg"
 			},
 			callback : null
 		},
@@ -110,13 +108,8 @@ var TFData = {
 			ts : formatDate("2015-10-7T00"),
 			label : "Ferry boat to Athens, Greece",
 			media : {
-				type : "info",
-				info : [
-					{
-						text : "Cost: 35 Euro",
-						icon : "/img/euro.png"
-					}
-				]
+				type : "photo",
+				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/IMG_withtext_220425.jpg"
 			},
 			callback : null
 		},
@@ -241,10 +234,13 @@ var TFData = {
 			},
 			ts : formatDate("2015-10-14T23"),
 			label : "4 days spent in a refugee reception centre",
+			/*
 			media : {
 				type : "photo",
 				url : "http://berlinergazette.de/traces-of-movement/wp-content/uploads/2016/10/20160106_115752.jpg"
 			},
+			*/
+			media : null,
 			callback : null
 		},
 		{
