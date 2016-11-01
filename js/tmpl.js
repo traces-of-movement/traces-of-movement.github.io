@@ -25,7 +25,8 @@ var TFTemplate = Backbone.Model.extend({
 			switch(this.get('media').type) {
 				case "photo":
 					embed.push($(document.createElement('img')).attr({
-						src : this.get('media').url
+						src : this.get('media').url,
+						width : 320
 					}));
 
 					break;
