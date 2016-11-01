@@ -32,10 +32,19 @@ div.tf_tracker_content {
 	max-width: 240px;
 	min-width: 240px;
 	position: absolute;
-	background-color: #ffffff;
+	background-color: transparent;
 	bottom: 6px;
 	margin:0 0 30px 0;
 	padding: 6px 10px;
+}
+
+div.tf_tracker_content h2, div.tf_tracker_content ul {
+	background-color: #ffffff;
+	padding:0 6px;
+}
+
+div.tf_tracker_content ul li {
+	margin:6px 0;
 }
 
 .tf_embed, .tf_embed:first-child{
